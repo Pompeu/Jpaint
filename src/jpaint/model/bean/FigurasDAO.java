@@ -9,11 +9,11 @@ public class FigurasDAO {
      * @param figs 
      */
     
-    public static void create(Figuras figs){
+   /* public static void create(Figuras figs){
         for (Figura f : figs.getFigs()) {
             FiguraDAO.create(f);
         }
-    }
+    }*/
     /*
     public static void limpar(Figuras figs) {
         for (Figura f : figs.getFigs()) {

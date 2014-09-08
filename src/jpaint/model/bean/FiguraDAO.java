@@ -35,7 +35,7 @@ public class FiguraDAO {
      * @param f
      * @return pkFigura
      */
-    public static int create(Figura f) {
+    public static int create(Figura f, int fkKey) {
         if (f.getPkfigura() != -1) {
             return -1;
         }
@@ -48,8 +48,9 @@ public class FiguraDAO {
                     + "b_b,"
                     + "r_i,"
                     + "g_i,"
-                    + "b_i)"
-                    + " values(?,?,?,?,?,?,?,?,?,?,?)");
+                    + "b_i,"
+                    + "fk_save)"                    
+                    + " values(?,?,?,?,?,?,?,?,?,?,?,?)");
             con = BancoDados.getConnection();
             /**/
             preparar = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
@@ -65,7 +66,7 @@ public class FiguraDAO {
             preparar.setInt(9, f.getColorInternal().getRed());
             preparar.setInt(10, f.getColorInternal().getGreen());
             preparar.setInt(11, f.getColorInternal().getBlue());
-
+            preparar.setInt(12, fkKey);
             preparar.execute();
             /* pega a chave */
             ResultSet rs = preparar.getGeneratedKeys();

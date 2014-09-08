@@ -25,14 +25,14 @@ public class SaveDAO {
      *
      * @param nome
      */
-    public static void save(String nome) {
+    public static int save(String nome) {
 
         String sql = ("INSERT INTO FIGURAS_SALVAS (PK_SAVE,SAVE_NAME) VALUES (?,?)");
-
+        int pkKey = pegarProximaChave();
         con = BancoDados.getConnection();
         try {
             preparar = con.prepareStatement(sql);
-            preparar.setInt(1, pegarProximaChave());
+            preparar.setInt(1, pkKey);
             preparar.setString(2, nome);
             preparar.execute();
 
@@ -41,7 +41,7 @@ public class SaveDAO {
         } catch (SQLException ex) {
             Logger.getLogger(SaveDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
-
+        return pkKey;
     }
 
     /**

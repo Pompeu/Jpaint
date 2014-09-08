@@ -10,12 +10,14 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPopupMenu;
+import jpaint.controller.SaveController;
 import jpaint.model.bean.FiguraDAO;
 import jpaint.model.bean.FigurasDAO;
 
 public class TelaPrincipal extends JFrame {
 
     Canvas c;
+    SaveController save = new SaveController();
 
     /**
      * contrutor da tela principal
@@ -73,7 +75,8 @@ public class TelaPrincipal extends JFrame {
         jmiSalvar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                FigurasDAO.create(c.getFigs());//passando todo array pra lista
+                //FigurasDAO.create(c.getFigs());//passando todo array pra lista  
+                save.savarFigurasNome(c.getFigs(), "Jose");
             }
         });
 
