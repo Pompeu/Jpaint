@@ -10,7 +10,6 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import jpaint.model.connection.BancoDados;
-import oracle.jrockit.jfr.tools.ConCatRepository;
 
 /**
  *
