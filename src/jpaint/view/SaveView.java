@@ -7,14 +7,16 @@ package jpaint.view;
 
 import java.awt.BorderLayout;
 import java.awt.Font;
-import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 /**
@@ -25,8 +27,9 @@ public class SaveView extends JFrame {
 
     private JLabel iName;
     private JLabel iMenssage;
-    private JTextField tfName;
+    private JTextField tfName = new JTextField("save name", 5);
     private JButton btnSave;
+    private String saveName;
 
     public SaveView() {
         super("Salvar");
@@ -48,18 +51,11 @@ public class SaveView extends JFrame {
         tfName = new JTextField();
         btnSave = new JButton("Salvar");
         tfName.setFont(new Font(Font.SERIF, Font.BOLD, 25));
-        
-        this.add(iName,BorderLayout.NORTH);
+
+        this.add(iName, BorderLayout.NORTH);
         this.add(tfName, BorderLayout.CENTER);
         this.add(iMenssage, BorderLayout.SOUTH);
         this.add(btnSave, BorderLayout.AFTER_LINE_ENDS);
-
-        btnSave.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                SaveView.this.dispose();
-            }
-        });
 
         tfName.addKeyListener(new KeyAdapter() {
             @Override
@@ -67,10 +63,20 @@ public class SaveView extends JFrame {
                 iMenssage.setText(tfName.getText());
             }
         });
-    }
-
-    public static void main(String[] args) {
-        new SaveView().setVisible(true);
 
     }
+
+    public JButton getBtnSave() {
+        return btnSave;
+    }
+
+    public JTextField getTfName() {
+        return tfName;
+    }
+
+    @Override
+    public String toString() {
+        return saveName;
+    }
+
 }

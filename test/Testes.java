@@ -4,19 +4,10 @@
  * and open the template in the editor.
  */
 
-import java.awt.Color;
-import java.sql.SQLException;
-import java.sql.Savepoint;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import jpaint.controller.SaveController;
+import java.util.Set;
 import jpaint.model.bean.Figura;
-import jpaint.model.bean.FiguraDAO;
-import jpaint.model.bean.Figuras;
-import jpaint.model.bean.Quadrado;
 import jpaint.model.bean.SaveDAO;
-import jpaint.model.connection.BancoDados;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Assert;
@@ -50,23 +41,19 @@ public class Testes {
     }
 
     @Test
-    public void testarSaveController() {
-        String nome = "Pompeu5";
+    public void testSaveDaoRetriveListSave() {
+        String name = "maria";
+        ArrayList<Figura> list = SaveDAO.retreveSaveList(name);
 
-        Figura f = new Quadrado(10, 15, 20, 15, Color.darkGray, Color.lightGray);
-        ArrayList<Figura> figuras = new ArrayList<>();
-        int quantidade = 10;
-        for (int i = 0; i < quantidade; i++) {
-            figuras.add(f);
-        }
-        Figuras figs = new Figuras();
-        figs.setFigs(figuras);
-        int sizeAnterior = FiguraDAO.retreveAll().size();
-        SaveController saveController = new SaveController();
+        list.stream().forEach(f -> System.out.println(f));
 
-        saveController.savarFigurasNome(figs, nome);
+        Assert.assertEquals(2, list.size());
+    }
 
-        Assert.assertTrue(FiguraDAO.retreveAll().size() == sizeAnterior + quantidade);
-
+    @Test
+    public void saveDAOListName() {
+        Set nomes = SaveDAO.retreveSaveName();
+        nomes.stream().forEach(f -> System.out.println(f));
+        Assert.assertEquals(2, nomes.size());
     }
 }

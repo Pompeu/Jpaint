@@ -15,7 +15,7 @@ import jpaint.model.bean.SaveDAO;
 public class testar {
     public static void main(String[] args) {
         
-        System.out.println(SaveDAO.save("Limp"));
+        //System.out.println(SaveDAO.save("Limp"));
         
         //System.out.println(SaveDAO.pegarProximaChave());
     }

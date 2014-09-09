@@ -17,7 +17,7 @@ public class Save {
 
     public Save(int pkSave, String saveName) {
         setPkSave(pkSave);
-        setSaveName(saveName);
+        setSaveName(saveName.toUpperCase());
     }
 
     public int getPkSave() {

@@ -91,40 +91,40 @@ public class FiguraDAO {
      * @return figura (com sua chave primarioa)
      * @throws SQLException
      */
-    private static Figura toFigura(ResultSet rs) throws SQLException {
+    public static Figura toFigura(ResultSet rs) throws SQLException {
         Figura f;
         switch (rs.getInt("tipo")) {
             case Figuras.CIRCULO:
                 f = new Circulo(rs.getInt("x"), rs.getInt("y"), rs.getInt("largura"),
                         rs.getInt("tipo"),
                         new Color(rs.getInt("r_b"), rs.getInt("g_b"), rs.getInt("b_b")),
-                        new Color(rs.getInt("r_i"), rs.getInt("g_i"), rs.getInt("g_i")));
+                        new Color(rs.getInt("r_i"), rs.getInt("g_i"), rs.getInt("g_b")));
                 break;
             case Figuras.ELIPSE:
                 f = new Elipse(rs.getInt("x"), rs.getInt("y"), rs.getInt("largura"),
                         rs.getInt("altura"),
                         rs.getInt("tipo"),
                         new Color(rs.getInt("r_b"), rs.getInt("g_b"), rs.getInt("b_b")),
-                        new Color(rs.getInt("r_i"), rs.getInt("g_i"), rs.getInt("g_i")));
+                        new Color(rs.getInt("r_i"), rs.getInt("g_i"), rs.getInt("g_b")));
                 break;
 
             case Figuras.QUADRADO:
                 f = new Quadrado(rs.getInt("x"), rs.getInt("y"),
                         rs.getInt("largura"), rs.getInt("tipo"),
                         new Color(rs.getInt("r_b"), rs.getInt("g_b"), rs.getInt("b_b")),
-                        new Color(rs.getInt("r_i"), rs.getInt("g_i"), rs.getInt("g_i")));
+                        new Color(rs.getInt("r_i"), rs.getInt("g_i"), rs.getInt("g_b")));
                 break;
             case Figuras.RETANGULO:
                 f = new Retangulo(rs.getInt("x"), rs.getInt("y"),
                         rs.getInt("largura"), rs.getInt("altura"), rs.getInt("tipo"),
                         new Color(rs.getInt("r_b"), rs.getInt("g_b"), rs.getInt("b_b")),
-                        new Color(rs.getInt("r_i"), rs.getInt("g_i"), rs.getInt("g_i")));
+                        new Color(rs.getInt("r_i"), rs.getInt("g_i"), rs.getInt("g_b")));
                 break;
             case Figuras.TRIANGULO:
                 f = new Triangulo(rs.getInt("x"), rs.getInt("y"),
                         rs.getInt("largura"), rs.getInt("altura"), rs.getInt("tipo"),
                         new Color(rs.getInt("r_b"), rs.getInt("g_b"), rs.getInt("b_b")),
-                        new Color(rs.getInt("r_i"), rs.getInt("g_i"), rs.getInt("g_i")));
+                        new Color(rs.getInt("r_i"), rs.getInt("g_i"), rs.getInt("g_b")));
                 break;
             default:
                 throw new AssertionError();

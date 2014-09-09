@@ -15,11 +15,16 @@ import jpaint.model.bean.SaveDAO;
  * @author pompeu
  */
 public class SaveController {
-
+    /**
+     * metodo que sava novas figuras no banco de acordo com  nome do save
+     * @param figs
+     * @param nome 
+     */
     public void savarFigurasNome(Figuras figs, String nome) {
         int fkkey = SaveDAO.save(nome);
         for (Figura f : figs.getFigs()) {
             FiguraDAO.create(f, fkkey);
         }
     }
+    
 }

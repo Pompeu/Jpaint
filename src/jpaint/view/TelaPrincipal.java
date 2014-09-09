@@ -1,23 +1,22 @@
 package jpaint.view;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.PopupMenu;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
-import javax.swing.JPopupMenu;
+import javax.swing.JOptionPane;
 import jpaint.controller.SaveController;
-import jpaint.model.bean.FiguraDAO;
-import jpaint.model.bean.FigurasDAO;
 
 public class TelaPrincipal extends JFrame {
 
-    Canvas c;
-    SaveController save = new SaveController();
+    private Canvas c;
+    private final SaveController saveController = new SaveController();
+    private String name;
 
     /**
      * contrutor da tela principal
@@ -28,6 +27,7 @@ public class TelaPrincipal extends JFrame {
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
         this.setLayout(new BorderLayout());
         initMenu();
+
         this.add(c, BorderLayout.CENTER);
         this.add(c.getToolBar(), BorderLayout.WEST);
     }
@@ -49,7 +49,8 @@ public class TelaPrincipal extends JFrame {
         JMenuItem jmiLimpar = new JMenuItem("Limpar", 0);
         JMenuItem jmiSair = new JMenuItem("Sair", 0);
         jmiSair.setMnemonic('S');
-
+        
+        
         JMenuItem recuperarCirculos = new JMenuItem("Carregar Circlos");
         JMenuItem recuperarElipses = new JMenuItem("Carregar Elipses");
         JMenuItem recuperarRetangulos = new JMenuItem("Carregar Retangulos");
@@ -75,11 +76,34 @@ public class TelaPrincipal extends JFrame {
         jmiSalvar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //FigurasDAO.create(c.getFigs());//passando todo array pra lista  
-                save.savarFigurasNome(c.getFigs(), "Jose");
+                //FigurasDAO.create(c.getFigs(),"Pompeu");//passando todo array pra lista  
+                saveController.savarFigurasNome(c.getFigs(), name);
             }
         });
+        /**
+         * savar uma nova figura no banco!!
+         */
+        jmiSalvarNovo.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                SaveView save = new SaveView();
+                save.setVisible(true);
+                /**
+                 * Cria um action para botão salvar
+                 * que grava a lista de figuras no banco
+                 * com nome do Save
+                 */
+                save.getBtnSave().addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        name = save.getTfName().getText();
+                        saveController.savarFigurasNome(c.getFigs(), name);
+                        save.dispose();
+                    }
+                });
 
+            }
+        });
         jmiLimpar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

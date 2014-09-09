@@ -4,13 +4,12 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/home/pompeu/NetBeansProjects/jPaint/src/jpaint/view/TelaPrincipal.java</file>
-            <file>file:/home/pompeu/NetBeansProjects/jPaint/src/jpaint/model/bean/Figuras.java</file>
             <file>file:/home/pompeu/NetBeansProjects/jPaint/src/jpaint/model/bean/SaveDAO.java</file>
             <file>file:/home/pompeu/NetBeansProjects/jPaint/src/jpaint/model/bean/FigurasDAO.java</file>
             <file>file:/home/pompeu/NetBeansProjects/jPaint/src/jpaint/controller/SaveController.java</file>
             <file>file:/home/pompeu/NetBeansProjects/jPaint/src/jpaint/controller/testar.java</file>
             <file>file:/home/pompeu/NetBeansProjects/jPaint/src/jpaint/model/bean/FiguraDAO.java</file>
-            <file>file:/home/pompeu/NetBeansProjects/jPaint/test/Testes.java</file>
+            <file>file:/home/pompeu/NetBeansProjects/jPaint/src/jpaint/view/SaveView.java</file>
         </group>
     </open-files>
 </project-private>
