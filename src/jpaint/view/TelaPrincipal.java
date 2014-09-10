@@ -78,9 +78,12 @@ public class TelaPrincipal extends JFrame {
                 recuperarSaves.getBtnCerragar().addActionListener(new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent e) {
-                        name = recuperarSaves.getNome();
+                        name = recuperarSaves.getTfNameSave().getText();
+                        int i = SaveDAO.recuperaPkKey(name);
+                        c.setFigs(SaveDAO.retreveSaveListItens(i));
+                        c.repaint();
+                        recuperarSaves.getJ().dispose();
                         
-                        c.setFigs(SaveDAO.retreveSaveListItens(1));
                     }
                 });
             }

@@ -69,8 +69,8 @@ public class Testes {
     }
        @Test
     public void testSaveRecuperarFigurasbyName() {
-        String nome = "pompeu";      
+        String nome = "amora";      
         
-        Assert.assertEquals(1, SaveDAO.recuperaPkKey(nome));
+        Assert.assertEquals(4, SaveDAO.recuperaPkKey(nome));
     }
 }

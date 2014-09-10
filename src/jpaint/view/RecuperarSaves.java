@@ -8,14 +8,10 @@ package jpaint.view;
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
-import jpaint.model.bean.Figura;
-import jpaint.model.bean.Figuras;
-import jpaint.model.bean.SaveDAO;
 
 /**
  *
@@ -27,7 +23,6 @@ public final class RecuperarSaves {
     private final JLabel iNome = new JLabel("Nome do Save");
     private final JButton btnCerragar = new JButton("Carregar");
     private final JTextField tfNameSave = new JTextField(10);
-    private String nome;
 
     public RecuperarSaves() {
         initItens();
@@ -43,31 +38,19 @@ public final class RecuperarSaves {
         j.add(iNome, BorderLayout.NORTH);
         j.add(btnCerragar, BorderLayout.SOUTH);
         j.add(tfNameSave, BorderLayout.CENTER);
-        btnCarregarAction();
 
     }
-    /**
-     * metodo que carrega ação dos botões
-     */
-    public void btnCarregarAction() {
-        btnCerragar.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                nome = tfNameSave.getText();
-            }
-        });
+
+    public JFrame getJ() {
+        return j;
     }
 
     public JButton getBtnCerragar() {
         return btnCerragar;
     }
 
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
+    public JTextField getTfNameSave() {
+        return tfNameSave;
     }
 
 }
