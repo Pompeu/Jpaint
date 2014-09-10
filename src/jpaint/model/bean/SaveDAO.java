@@ -99,9 +99,9 @@ public class SaveDAO {
         return listFigurasFiltradas;
     }
 
-    public static Set retreveSaveName() {
-        Set nomes = new HashSet<String>();
-        String sql = "SELECT SAVE_NAME FROM FIGURAS_SAVE";
+    public static List<Save> retreveSaveName() {
+        List<Save> nomes = new ArrayList<>();
+        String sql = "SELECT * FROM FIGURAS_SALVAS";
         con = BancoDados.getConnection();
         try {
             preparar = con.prepareStatement(sql);
@@ -109,8 +109,8 @@ public class SaveDAO {
             ResultSet rs = preparar.executeQuery();
 
             while (rs.next()) {
-                nomes.add(rs.getString("SAVE_NAME"));
-
+                Save nome = new Save(rs.getInt("PK_SAVE"), rs.getString("SAVE_NAME"));
+                nomes.add(nome);
             }
             BancoDados.closeConnection();
         } catch (SQLException ex) {

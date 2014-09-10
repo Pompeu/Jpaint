@@ -3,14 +3,16 @@ package jpaint.view;
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
-import javax.swing.JOptionPane;
 import jpaint.controller.SaveController;
+import jpaint.model.bean.Figuras;
+import jpaint.model.bean.Save;
+import jpaint.model.bean.SaveDAO;
 
 public class TelaPrincipal extends JFrame {
 
@@ -43,25 +45,21 @@ public class TelaPrincipal extends JFrame {
 
         JMenuItem jmiSalvar = new JMenuItem("Salvar", 0);//intens do menu Jmenu
         JMenuItem jmiSalvarNovo = new JMenuItem("Salvar Novo", 0);
-
-        JMenuItem jmiCarregar = new JMenu("Carregar");
-
+        JMenuItem jmiCarregar = new JMenu("Carregar Recentes");
         JMenuItem jmiLimpar = new JMenuItem("Limpar", 0);
         JMenuItem jmiSair = new JMenuItem("Sair", 0);
         jmiSair.setMnemonic('S');
-        
-        
-        JMenuItem recuperarCirculos = new JMenuItem("Carregar Circlos");
-        JMenuItem recuperarElipses = new JMenuItem("Carregar Elipses");
-        JMenuItem recuperarRetangulos = new JMenuItem("Carregar Retangulos");
-        JMenuItem recuperarQuadrados = new JMenuItem("Carregar Quadrados");
-        JMenuItem recuperarTriangulos = new JMenuItem("Carregar Triangulos");
 
-        jmiCarregar.add(recuperarCirculos);
-        jmiCarregar.add(recuperarElipses);
-        jmiCarregar.add(recuperarRetangulos);
-        jmiCarregar.add(recuperarQuadrados);
-        jmiCarregar.add(recuperarTriangulos);
+        JMenuItem subJMenuPrimeiroItem = new JMenuItem("Carregar");
+        jmiCarregar.add(subJMenuPrimeiroItem);
+
+        JMenuItem subJMenuRecentes;
+        List<Save> lista = SaveDAO.retreveSaveName();
+        for (Save save : lista) {
+            subJMenuRecentes = new JMenuItem(save.getSaveName());
+            jmiCarregar.add(subJMenuRecentes);
+
+        }
 
         jmArquivo.add(jmiSalvar);
         jmArquivo.add(jmiSalvarNovo);
@@ -72,6 +70,13 @@ public class TelaPrincipal extends JFrame {
         jmbBarra.add(jmArquivo);
 
         this.setJMenuBar(jmbBarra);
+        subJMenuPrimeiroItem.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                RecuperarSaves recuperarSaves = new RecuperarSaves();
+                c.getFigs().setFigs(recuperarSaves.getFigs());
+            }
+        });
 
         jmiSalvar.addActionListener(new ActionListener() {
             @Override
@@ -87,11 +92,10 @@ public class TelaPrincipal extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 SaveView save = new SaveView();
-                save.setVisible(true);
+
                 /**
-                 * Cria um action para botão salvar
-                 * que grava a lista de figuras no banco
-                 * com nome do Save
+                 * Cria um action para botão salvar que grava a lista de figuras
+                 * no banco com nome do Save
                  */
                 save.getBtnSave().addActionListener(new ActionListener() {
                     @Override
@@ -117,6 +121,7 @@ public class TelaPrincipal extends JFrame {
                 System.exit(0);
             }
         });
+
     }
 
 }

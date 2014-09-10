@@ -22,4 +22,6 @@ public class Figuras {
     public void setFigs(ArrayList<Figura> figs) {
         this.figs = figs;
     }
+
+   
 }
