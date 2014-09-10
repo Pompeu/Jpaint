@@ -99,8 +99,60 @@ public class SaveDAO {
         return listFigurasFiltradas;
     }
 
+    /**
+     * recupera uma lista de figuras salvas do banco de acordo com seu parametro
+     *
+     * @param fkKey
+     * @return
+     */
+    public static Figuras retreveSaveListItens(int fkKey) {
+        Figuras listFigurasFiltradas = new Figuras();
+
+        String sql = "SELECT * FROM FIGURA WHERE FK_SAVE = ?";
+        con = BancoDados.getConnection();
+        try {
+            preparar = con.prepareStatement(sql);
+            preparar.setInt(1, fkKey);
+            ResultSet rs = preparar.executeQuery();
+
+            while (rs.next()) {
+                listFigurasFiltradas.getFigs().add(FiguraDAO.toFigura(rs));
+            }
+            BancoDados.closeConnection();
+        } catch (SQLException ex) {
+            Logger.getLogger(SaveDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return listFigurasFiltradas;
+    }
+
+    public static int recuperaPkKey(String nome) {
+        Save save = null;
+
+        String sql = "SELECT * FROM FIGURAS_SALVAS WHERE SAVE_NAME = ?";
+        con = BancoDados.getConnection();
+        try {
+            preparar = con.prepareStatement(sql);
+            preparar.setString(1, nome);
+            ResultSet rs = preparar.executeQuery();
+
+            rs.next();
+            save = new Save(rs.getInt("PK_SAVE"), rs.getString("SAVE_NAME"));
+
+            BancoDados.closeConnection();
+        } catch (SQLException ex) {
+            Logger.getLogger(SaveDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return save.getPkSave();
+    }
+
+    /**
+     * esse metodo retorna um lista com todos saves do banco
+     *
+     * @return namesSaved
+     */
     public static List<Save> retreveSaveName() {
-        List<Save> nomes = new ArrayList<>();
+        List<Save> names = new ArrayList<>();
         String sql = "SELECT * FROM FIGURAS_SALVAS";
         con = BancoDados.getConnection();
         try {
@@ -110,12 +162,12 @@ public class SaveDAO {
 
             while (rs.next()) {
                 Save nome = new Save(rs.getInt("PK_SAVE"), rs.getString("SAVE_NAME"));
-                nomes.add(nome);
+                names.add(nome);
             }
             BancoDados.closeConnection();
         } catch (SQLException ex) {
             Logger.getLogger(SaveDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return nomes;
+        return names;
     }
 }

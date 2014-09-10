@@ -6,7 +6,9 @@
 
 import java.util.ArrayList;
 import java.util.List;
+import jpaint.controller.SaveController;
 import jpaint.model.bean.Figura;
+import jpaint.model.bean.Figuras;
 import jpaint.model.bean.Save;
 import jpaint.model.bean.SaveDAO;
 import org.junit.After;
@@ -40,7 +42,7 @@ public class Testes {
     @After
     public void tearDown() {
     }
-
+/*
     @Test
     public void testSaveDaoRetriveListSave() {
         String name = "maria";
@@ -54,5 +56,21 @@ public class Testes {
         List<Save> nomes = SaveDAO.retreveSaveName();
         nomes.stream().forEach(System.out::println);
         Assert.assertEquals(5, nomes.size());
+    }
+*/
+    @Test
+    public void testSaveRecuperarFiguras() {
+        
+        SaveController saveController = new SaveController();
+
+        Figuras figs = saveController.recuperarFigurasNome("amora");
+        
+        Assert.assertEquals(5, figs.getFigs().size());
+    }
+       @Test
+    public void testSaveRecuperarFigurasbyName() {
+        String nome = "pompeu";      
+        
+        Assert.assertEquals(1, SaveDAO.recuperaPkKey(nome));
     }
 }

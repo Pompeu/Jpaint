@@ -26,8 +26,8 @@ public final class RecuperarSaves {
     private final JFrame j = new JFrame("Carregar um Save");
     private final JLabel iNome = new JLabel("Nome do Save");
     private final JButton btnCerragar = new JButton("Carregar");
-    private final JTextField tfNomeSave = new JTextField(10);
-    private ArrayList<Figura> figs;
+    private final JTextField tfNameSave = new JTextField(10);
+    private String nome;
 
     public RecuperarSaves() {
         initItens();
@@ -42,28 +42,32 @@ public final class RecuperarSaves {
         j.setLayout(new BorderLayout());
         j.add(iNome, BorderLayout.NORTH);
         j.add(btnCerragar, BorderLayout.SOUTH);
-        j.add(tfNomeSave, BorderLayout.CENTER);
+        j.add(tfNameSave, BorderLayout.CENTER);
         btnCarregarAction();
 
     }
-
+    /**
+     * metodo que carrega ação dos botões
+     */
     public void btnCarregarAction() {
         btnCerragar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                figs = SaveDAO.retreveSaveList(tfNomeSave.getText());
-                j.dispose();
+                nome = tfNameSave.getText();
             }
         });
     }
 
-    public ArrayList<Figura> getFigs() {
-        return figs;
+    public JButton getBtnCerragar() {
+        return btnCerragar;
     }
 
-    public void setFigs(ArrayList<Figura> figs) {
-        this.figs = figs;
+    public String getNome() {
+        return nome;
     }
-    
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
 
 }

@@ -74,14 +74,23 @@ public class TelaPrincipal extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 RecuperarSaves recuperarSaves = new RecuperarSaves();
-                c.getFigs().setFigs(recuperarSaves.getFigs());
+
+                recuperarSaves.getBtnCerragar().addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        name = recuperarSaves.getNome();
+                        
+                        c.setFigs(SaveDAO.retreveSaveListItens(1));
+                    }
+                });
             }
         });
 
         jmiSalvar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //FigurasDAO.create(c.getFigs(),"Pompeu");//passando todo array pra lista  
+                //FigurasDAO.create(c.getFigs(),"Pompeue) {
+                //FigurasDAO.create(c.getFigs(),"Po");//passando todo array pra lista  
                 saveController.savarFigurasNome(c.getFigs(), name);
             }
         });
