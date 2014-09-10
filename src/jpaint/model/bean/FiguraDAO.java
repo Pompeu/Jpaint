@@ -33,6 +33,7 @@ public class FiguraDAO {
      * metodo que persiste uma figura no banco de dados
      *
      * @param f
+     * @param fkKey
      * @return pkFigura
      */
     public static int create(Figura f, int fkKey) {
@@ -49,7 +50,7 @@ public class FiguraDAO {
                     + "r_i,"
                     + "g_i,"
                     + "b_i,"
-                    + "fk_save)"                    
+                    + "fk_save)"
                     + " values(?,?,?,?,?,?,?,?,?,?,?,?)");
             con = BancoDados.getConnection();
             /**/
@@ -223,7 +224,7 @@ public class FiguraDAO {
 
     /**
      * esse metodo deleta uma figura do banco de dados
-     *
+     * preciado
      * @param f
      */
     public static void drop(Figura f) {
@@ -246,18 +247,4 @@ public class FiguraDAO {
         }
     }
 
-    /**
-     * Metodos que limpa a tabela de figuras do bacno de dados
-     */
-    public static void dropAll() {
-        try {
-            String sql = ("DELETE FROM FIGURA");
-            con = BancoDados.getConnection();
-            preparar = con.prepareStatement(sql);
-            preparar.execute();
-            BancoDados.closeConnection();
-        } catch (SQLException ex) {
-            Logger.getLogger(FiguraDAO.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
 }

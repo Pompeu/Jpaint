@@ -13,8 +13,10 @@ public class Retangulo extends Figura {
 
     @Override
     public void desenheMe(Graphics g) {
-        g.setColor(getColorBorda());
+        
+        g.setColor(getColorInternal());
         g.fillRect(getX(), getY(), getLargura(), getAltura());
+        g.setColor(getColorBorda());
         g.drawRect(getX(), getY(), getLargura(), getAltura());
         
     }

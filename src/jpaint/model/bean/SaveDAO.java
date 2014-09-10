@@ -8,9 +8,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import jpaint.model.connection.BancoDados;
@@ -125,7 +123,11 @@ public class SaveDAO {
 
         return listFigurasFiltradas;
     }
-
+    /**
+     * esse metodo recupera um chave primaria de um save
+     * @param nome
+     * @return pkKey
+     */
     public static int recuperaPkKey(String nome) {
         Save save = null;
 

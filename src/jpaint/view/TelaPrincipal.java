@@ -3,14 +3,14 @@ package jpaint.view;
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
+import javax.swing.JPopupMenu;
 import jpaint.controller.SaveController;
-import jpaint.model.bean.Figuras;
 import jpaint.model.bean.Save;
 import jpaint.model.bean.SaveDAO;
 
@@ -19,6 +19,7 @@ public class TelaPrincipal extends JFrame {
     private Canvas c;
     private final SaveController saveController = new SaveController();
     private String name;
+    private int fkKey;
 
     /**
      * contrutor da tela principal
@@ -43,7 +44,7 @@ public class TelaPrincipal extends JFrame {
         JMenu jmArquivo = new JMenu("Aquivo"); //Cabeçario do jMenu
         jmArquivo.setMnemonic('A');//subilnha a letra do menu alt+A fica como atalho
 
-        JMenuItem jmiSalvar = new JMenuItem("Salvar", 0);//intens do menu Jmenu
+        JMenuItem jmiSalvar = new JMenuItem("Salvar Atual", 0);//intens do menu Jmenu
         JMenuItem jmiSalvarNovo = new JMenuItem("Salvar Novo", 0);
         JMenuItem jmiCarregar = new JMenu("Carregar Recentes");
         JMenuItem jmiLimpar = new JMenuItem("Limpar", 0);
@@ -79,11 +80,11 @@ public class TelaPrincipal extends JFrame {
                     @Override
                     public void actionPerformed(ActionEvent e) {
                         name = recuperarSaves.getTfNameSave().getText();
-                        int i = SaveDAO.recuperaPkKey(name);
-                        c.setFigs(SaveDAO.retreveSaveListItens(i));
+                        fkKey = SaveDAO.recuperaPkKey(name);
+                        c.setFigs(SaveDAO.retreveSaveListItens(fkKey));
                         c.repaint();
                         recuperarSaves.getJ().dispose();
-                        
+
                     }
                 });
             }
@@ -92,32 +93,34 @@ public class TelaPrincipal extends JFrame {
         jmiSalvar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //FigurasDAO.create(c.getFigs(),"Pompeue) {
-                //FigurasDAO.create(c.getFigs(),"Po");//passando todo array pra lista  
-                saveController.savarFigurasNome(c.getFigs(), name);
+                JOptionPane.showMessageDialog(rootPane, "Não Esta Implementado");
             }
         });
         /**
          * savar uma nova figura no banco!!
          */
         jmiSalvarNovo.addActionListener(new ActionListener() {
+
             @Override
             public void actionPerformed(ActionEvent e) {
-                SaveView save = new SaveView();
+                if (c.getFigs().getFigs().size() == 0) {
+                    JOptionPane.showMessageDialog(rootPane, "Sem Figuras");
+                } else {
+                    SaveView save = new SaveView();
+                    /**
+                     * Cria um action para botão salvar que grava a lista de
+                     * figuras no banco com nome do Save
+                     */
 
-                /**
-                 * Cria um action para botão salvar que grava a lista de figuras
-                 * no banco com nome do Save
-                 */
-                save.getBtnSave().addActionListener(new ActionListener() {
-                    @Override
-                    public void actionPerformed(ActionEvent e) {
-                        name = save.getTfName().getText();
-                        saveController.savarFigurasNome(c.getFigs(), name);
-                        save.dispose();
-                    }
-                });
-
+                    save.getBtnSave().addActionListener(new ActionListener() {
+                        @Override
+                        public void actionPerformed(ActionEvent e) {
+                            name = save.getTfName().getText();
+                            saveController.savarFigurasNome(c.getFigs(), name);
+                            save.dispose();
+                        }
+                    });
+                }
             }
         });
         jmiLimpar.addActionListener(new ActionListener() {

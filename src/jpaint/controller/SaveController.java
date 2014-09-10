@@ -28,8 +28,10 @@ public class SaveController {
             FiguraDAO.create(f, fkkey);
         }
     }
+
     /**
      * esse metodo recebe um nome e recupera uma lista de figuras
+     *
      * @param nome
      * @return figs
      */
@@ -38,5 +40,14 @@ public class SaveController {
         Figuras figs = SaveDAO.retreveSaveListItens(fkKey);
         return figs;
     }
-
+    /**
+     * esse metodo ainda não esta completo
+     * @param figs
+     * @param fkKey 
+     */
+    public void savarNovasFiguras(Figuras figs, int fkKey) {
+        for (Figura f : figs.getFigs()) {
+            FiguraDAO.create(f, fkKey);
+        }
+    }
 }
