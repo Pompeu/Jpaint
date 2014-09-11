@@ -1,7 +1,9 @@
 package jpaint.model.bean;
 
+import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.Polygon;
 
 public class Triangulo extends Figura {
@@ -19,12 +21,15 @@ public class Triangulo extends Figura {
      */
     @Override
     public void desenheMe(Graphics g) {
-        g.setColor(getColorBorda());
+        
         Polygon p = new Polygon();
         p.addPoint(getX(), getY() + getAltura());
         p.addPoint(getX() + getLargura(), getY() + getAltura());
         p.addPoint(getX() + getLargura() / 2, getY());
+        g.setColor(getColorInternal());
         g.fillPolygon(p);
+        g.setColor(getColorBorda());
+        ((Graphics2D) g).setStroke(new BasicStroke(BasicStroke.CAP_SQUARE, BasicStroke.JOIN_BEVEL, BasicStroke.JOIN_BEVEL));
         g.drawPolygon(p);
         
     }

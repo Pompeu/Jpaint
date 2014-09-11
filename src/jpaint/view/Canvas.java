@@ -63,34 +63,34 @@ public class Canvas extends JPanel {
                                 figs.getFigs().add(new Circulo(x,
                                                 y,
                                                 Figura.calcLargura(x, e.getX()), ToolBar.CIRCULO,
-                                                ToolBar.getColorButton(), ToolBar.getColorButtonBackGround()));
+                                                ToolBar.getBtnColorBorder().getBackground(), ToolBar.getBtnColorBackGround().getBackground()));
                                 break;
                             case ToolBar.ELIPSE:
                                 figs.getFigs().add(new Elipse(x,
                                                 y,
                                                 Figura.calcLargura(x, e.getX()),
                                                 Figura.calcAltura(y, e.getY()), ToolBar.ELIPSE,
-                                                ToolBar.getColorButton(), ToolBar.getColorButtonBackGround()));
+                                                ToolBar.getBtnColorBorder().getBackground(), ToolBar.getBtnColorBackGround().getBackground()));
                                 break;
                             case ToolBar.QUADRADO:
                                 figs.getFigs().add(new Quadrado(x,
                                                 y,
                                                 Figura.calcAltura(y, e.getY()), ToolBar.QUADRADO,
-                                                ToolBar.getColorButton(), ToolBar.getColorButtonBackGround()));
+                                                ToolBar.getBtnColorBorder().getBackground(), ToolBar.getBtnColorBackGround().getBackground()));
                                 break;
                             case ToolBar.RETANGULO:
                                 figs.getFigs().add(new Retangulo(x,
                                                 y,
                                                 Figura.calcLargura(x, e.getX()),
                                                 Figura.calcAltura(y, e.getY()), ToolBar.RETANGULO,
-                                                ToolBar.getColorButton(), ToolBar.getColorButtonBackGround()));
+                                                ToolBar.getBtnColorBorder().getBackground(), ToolBar.getBtnColorBackGround().getBackground()));
                                 break;
                             case ToolBar.TRIANGULO:
                                 figs.getFigs().add(new Triangulo(x,
                                                 y,
                                                 Figura.calcLargura(x, e.getX()),
                                                 Figura.calcAltura(y, e.getY()),
-                                                ToolBar.TRIANGULO, ToolBar.getColorButton(), ToolBar.getColorButtonBackGround()));
+                                                ToolBar.TRIANGULO, ToolBar.getBtnColorBorder().getBackground(), ToolBar.getBtnColorBackGround().getBackground()));
                                 break;
                             default:
                                 throw new AssertionError();

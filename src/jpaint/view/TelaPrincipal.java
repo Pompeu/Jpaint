@@ -9,7 +9,6 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
-import javax.swing.JPopupMenu;
 import jpaint.controller.SaveController;
 import jpaint.model.bean.Save;
 import jpaint.model.bean.SaveDAO;
@@ -30,7 +29,6 @@ public class TelaPrincipal extends JFrame {
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
         this.setLayout(new BorderLayout());
         initMenu();
-
         this.add(c, BorderLayout.CENTER);
         this.add(c.getToolBar(), BorderLayout.WEST);
     }
@@ -40,6 +38,7 @@ public class TelaPrincipal extends JFrame {
      */
     private void initMenu() {
         c = new Canvas(new ToolBar());
+
         JMenuBar jmbBarra = new JMenuBar();//barra de menus
         JMenu jmArquivo = new JMenu("Aquivo"); //Cabeçario do jMenu
         jmArquivo.setMnemonic('A');//subilnha a letra do menu alt+A fica como atalho
@@ -54,14 +53,9 @@ public class TelaPrincipal extends JFrame {
         JMenuItem subJMenuPrimeiroItem = new JMenuItem("Carregar");
         jmiCarregar.add(subJMenuPrimeiroItem);
 
-        JMenuItem subJMenuRecentes;
-        List<Save> lista = SaveDAO.retreveSaveName();
-        for (Save save : lista) {
-            subJMenuRecentes = new JMenuItem(save.getSaveName());
-            jmiCarregar.add(subJMenuRecentes);
-
-        }
-
+        
+  
+        
         jmArquivo.add(jmiSalvar);
         jmArquivo.add(jmiSalvarNovo);
         jmArquivo.add(jmiCarregar);
@@ -74,7 +68,7 @@ public class TelaPrincipal extends JFrame {
         subJMenuPrimeiroItem.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                RecuperarSaves recuperarSaves = new RecuperarSaves();
+                final RecuperarSaves recuperarSaves = new RecuperarSaves();
 
                 recuperarSaves.getBtnCerragar().addActionListener(new ActionListener() {
                     @Override
@@ -84,7 +78,6 @@ public class TelaPrincipal extends JFrame {
                         c.setFigs(SaveDAO.retreveSaveListItens(fkKey));
                         c.repaint();
                         recuperarSaves.getJ().dispose();
-
                     }
                 });
             }
@@ -100,18 +93,16 @@ public class TelaPrincipal extends JFrame {
          * savar uma nova figura no banco!!
          */
         jmiSalvarNovo.addActionListener(new ActionListener() {
-
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (c.getFigs().getFigs().size() == 0) {
+                if (c.getFigs().getFigs().isEmpty()) {
                     JOptionPane.showMessageDialog(rootPane, "Sem Figuras");
                 } else {
-                    SaveView save = new SaveView();
+                    final SaveView save = new SaveView();
                     /**
                      * Cria um action para botão salvar que grava a lista de
                      * figuras no banco com nome do Save
                      */
-
                     save.getBtnSave().addActionListener(new ActionListener() {
                         @Override
                         public void actionPerformed(ActionEvent e) {
@@ -138,5 +129,4 @@ public class TelaPrincipal extends JFrame {
         });
 
     }
-
 }

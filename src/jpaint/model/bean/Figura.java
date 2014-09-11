@@ -24,6 +24,8 @@ public abstract class Figura {
      * @param largura
      * @param altura
      * @param tipo
+     * @param colorBorda
+     * @param colorInternal
      */
     public Figura(int x, int y, int largura, int altura, int tipo, Color colorBorda, Color colorInternal) {
         setX(x);

@@ -44,14 +44,10 @@ public class FiguraDAO {
         try {
             String sql = ("INSERT INTO FIGURA(x, y, largura, altura,"
                     + "tipo,"
-                    + "r_b,"
-                    + "g_b,"
-                    + "b_b,"
-                    + "r_i,"
-                    + "g_i,"
-                    + "b_i,"
+                    + "color_border,"
+                    + "color_internal,"
                     + "fk_save)"
-                    + " values(?,?,?,?,?,?,?,?,?,?,?,?)");
+                    + " values(?,?,?,?,?,?,?,?)");
             con = BancoDados.getConnection();
             /**/
             preparar = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
@@ -61,13 +57,9 @@ public class FiguraDAO {
             preparar.setInt(3, f.getLargura());
             preparar.setInt(4, f.getAltura());
             preparar.setInt(5, f.getTipo());
-            preparar.setInt(6, f.getColorBorda().getRed());
-            preparar.setInt(7, f.getColorBorda().getGreen());
-            preparar.setInt(8, f.getColorBorda().getBlue());
-            preparar.setInt(9, f.getColorInternal().getRed());
-            preparar.setInt(10, f.getColorInternal().getGreen());
-            preparar.setInt(11, f.getColorInternal().getBlue());
-            preparar.setInt(12, fkKey);
+            preparar.setInt(6, f.getColorBorda().getRGB());
+            preparar.setInt(7, f.getColorBorda().getRGB());
+            preparar.setInt(8, fkKey);
             preparar.execute();
             /* pega a chave */
             ResultSet rs = preparar.getGeneratedKeys();
@@ -98,34 +90,34 @@ public class FiguraDAO {
             case Figuras.CIRCULO:
                 f = new Circulo(rs.getInt("x"), rs.getInt("y"), rs.getInt("largura"),
                         rs.getInt("tipo"),
-                        new Color(rs.getInt("r_b"), rs.getInt("g_b"), rs.getInt("b_b")),
-                        new Color(rs.getInt("r_i"), rs.getInt("g_i"), rs.getInt("g_b")));
+                        new Color(rs.getInt("color_border")),
+                        new Color(rs.getInt("color_internal")));
                 break;
             case Figuras.ELIPSE:
                 f = new Elipse(rs.getInt("x"), rs.getInt("y"), rs.getInt("largura"),
                         rs.getInt("altura"),
                         rs.getInt("tipo"),
-                        new Color(rs.getInt("r_b"), rs.getInt("g_b"), rs.getInt("b_b")),
-                        new Color(rs.getInt("r_i"), rs.getInt("g_i"), rs.getInt("g_b")));
+                        new Color(rs.getInt("color_border")),
+                        new Color(rs.getInt("color_internal")));
                 break;
 
             case Figuras.QUADRADO:
                 f = new Quadrado(rs.getInt("x"), rs.getInt("y"),
                         rs.getInt("largura"), rs.getInt("tipo"),
-                        new Color(rs.getInt("r_b"), rs.getInt("g_b"), rs.getInt("b_b")),
-                        new Color(rs.getInt("r_i"), rs.getInt("g_i"), rs.getInt("g_b")));
+                        new Color(rs.getInt("color_border")),
+                        new Color(rs.getInt("color_internal")));
                 break;
             case Figuras.RETANGULO:
                 f = new Retangulo(rs.getInt("x"), rs.getInt("y"),
                         rs.getInt("largura"), rs.getInt("altura"), rs.getInt("tipo"),
-                        new Color(rs.getInt("r_b"), rs.getInt("g_b"), rs.getInt("b_b")),
-                        new Color(rs.getInt("r_i"), rs.getInt("g_i"), rs.getInt("g_b")));
+                        new Color(rs.getInt("color_border")),
+                        new Color(rs.getInt("color_internal")));
                 break;
             case Figuras.TRIANGULO:
                 f = new Triangulo(rs.getInt("x"), rs.getInt("y"),
                         rs.getInt("largura"), rs.getInt("altura"), rs.getInt("tipo"),
-                        new Color(rs.getInt("r_b"), rs.getInt("g_b"), rs.getInt("b_b")),
-                        new Color(rs.getInt("r_i"), rs.getInt("g_i"), rs.getInt("g_b")));
+                        new Color(rs.getInt("color_border")),
+                        new Color(rs.getInt("color_internal")));
                 break;
             default:
                 throw new AssertionError();
@@ -223,8 +215,8 @@ public class FiguraDAO {
     }
 
     /**
-     * esse metodo deleta uma figura do banco de dados
-     * preciado
+     * esse metodo deleta uma figura do banco de dados preciado
+     *
      * @param f
      */
     public static void drop(Figura f) {

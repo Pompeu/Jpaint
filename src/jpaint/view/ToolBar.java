@@ -15,7 +15,6 @@ public class ToolBar extends JPanel {
     public final static int RETANGULO = 3;
     public final static int TRIANGULO = 4;
     private int ferramentaSelecionada = 0;
-    private final JButton botoes[] = new JButton[5];
     private static final JButton btnElipse = new JButton("Elipse");
     private static final JButton btnCirculo = new JButton("Circulo");
     private static final JButton btnQuadrado = new JButton("Quadrado");
@@ -105,7 +104,15 @@ public class ToolBar extends JPanel {
         btnColorBorder.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                new ColorChoice().setEnabled(true);
+                final ColorChoice colorBorder = new ColorChoice();
+                colorBorder.setVisible(true);
+                colorBorder.getBtnSelect().addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        btnColorBorder.setBackground(colorBorder.getBtnSelect().getBackground());
+                        colorBorder.dispose();
+                    }
+                });
 
             }
         });
@@ -113,7 +120,16 @@ public class ToolBar extends JPanel {
         btnColorBackGround.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                new ColorChoice().setEnabled(true);
+                final ColorChoice colorBackGroud = new ColorChoice();
+                colorBackGroud.setVisible(true);
+                colorBackGroud.getBtnSelect().addActionListener(new ActionListener() {
+
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        btnColorBackGround.setBackground(colorBackGroud.getBtnSelect().getBackground());
+                        colorBackGroud.dispose();
+                    }
+                });
             }
         });
     }
@@ -132,25 +148,24 @@ public class ToolBar extends JPanel {
      * @param color
      */
     public static void setColorJButton(Color color) {
-        btnElipse.setBackground(color);
-        btnCirculo.setBackground(color);
-        btnRetangulo.setBackground(color);
-        btnQuadrado.setBackground(color);
-        btnTriangulo.setBackground(color);
+
+        btnColorBorder.setBackground(color);
 
     }
 
-    /**
-     * pegando a cor do botões
-     *
-     * @return
-     */
-    public static Color getColorButton() {
-        return btnElipse.getBackground();
+    public static void setColorJButtonBackGroud(Color color) {
+        btnColorBackGround.setBackground(color);
+
     }
 
-    public static Color getColorButtonBackGround() {
-        return btnElipse.getBackground();
+    public static JButton getBtnColorBorder() {
+        return btnColorBorder;
     }
 
+    public static JButton getBtnColorBackGround() {
+        return btnColorBackGround;
+    }
+
+   
+   
 }

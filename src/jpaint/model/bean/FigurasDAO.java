@@ -4,7 +4,7 @@ package jpaint.model.bean;
 public class FigurasDAO {
     
     /**
-     * esse metodos é capaz de de insetir varias figuras no banco de dados
+     * esse metodos é capaz de de inserir varias figuras no banco de dados
      * recebendo um lista como argumento
      * @param figs 
      */

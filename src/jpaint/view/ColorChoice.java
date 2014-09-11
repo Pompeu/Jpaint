@@ -47,18 +47,11 @@ public class ColorChoice extends JFrame {
         ChangeListener escutaCampos = new ChangeListener() {
             @Override
             public void stateChanged(ChangeEvent e) {
-                setCor(selectColor.getColor());
-                btnSelect.setForeground(getCor().darker());
-                ToolBar.setColorJButton(getCor());
+                btnSelect.setForeground(selectColor.getColor());
+                btnSelect.setBackground(selectColor.getColor().darker());
             }
         };
-        btnSelect.addActionListener(new ActionListener() {
 
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                ColorChoice.this.dispose();
-            }
-        });
         final JLabel visaoPrevia = new JLabel("COR SELECIONADA", JLabel.CENTER);
         visaoPrevia.setFont(new Font("serif", Font.BOLD | Font.CENTER_BASELINE, 48));
         visaoPrevia.setSize(visaoPrevia.getPreferredSize());
@@ -69,12 +62,8 @@ public class ColorChoice extends JFrame {
 
     }
 
-    public Color getCor() {
-        return color;
-    }
-
-    public void setCor(Color color) {
-        this.color = color;
+    public JButton getBtnSelect() {
+        return btnSelect;
     }
 
 }

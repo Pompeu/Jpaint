@@ -1,7 +1,9 @@
 package jpaint.model.bean;
 
+import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 
 public class Retangulo extends Figura {
 
@@ -17,6 +19,7 @@ public class Retangulo extends Figura {
         g.setColor(getColorInternal());
         g.fillRect(getX(), getY(), getLargura(), getAltura());
         g.setColor(getColorBorda());
+        ((Graphics2D) g).setStroke(new BasicStroke(BasicStroke.CAP_SQUARE, BasicStroke.JOIN_BEVEL, BasicStroke.JOIN_BEVEL));
         g.drawRect(getX(), getY(), getLargura(), getAltura());
         
     }
