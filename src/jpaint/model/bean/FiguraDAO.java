@@ -58,7 +58,7 @@ public class FiguraDAO {
             preparar.setInt(4, f.getAltura());
             preparar.setInt(5, f.getTipo());
             preparar.setInt(6, f.getColorBorda().getRGB());
-            preparar.setInt(7, f.getColorBorda().getRGB());
+            preparar.setInt(7, f.getColorInternal().getRGB());
             preparar.setInt(8, fkKey);
             preparar.execute();
             /* pega a chave */

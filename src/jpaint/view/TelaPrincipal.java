@@ -3,14 +3,12 @@ package jpaint.view;
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.List;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import jpaint.controller.SaveController;
-import jpaint.model.bean.Save;
 import jpaint.model.bean.SaveDAO;
 
 public class TelaPrincipal extends JFrame {
