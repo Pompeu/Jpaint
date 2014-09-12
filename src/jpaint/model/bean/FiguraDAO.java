@@ -200,7 +200,6 @@ public class FiguraDAO {
             con = BancoDados.getConnection();
             /**/
             preparar = con.prepareStatement(sql);
-
             preparar.setInt(1, f.getX());
             preparar.setInt(2, f.getY());
             preparar.setInt(3, f.getLargura());

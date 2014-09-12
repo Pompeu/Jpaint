@@ -3,6 +3,7 @@ package jpaint.view;
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.List;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
@@ -47,13 +48,23 @@ public class TelaPrincipal extends JFrame {
         JMenuItem jmiLimpar = new JMenuItem("Limpar", 0);
         JMenuItem jmiSair = new JMenuItem("Sair", 0);
         jmiSair.setMnemonic('S');
-
-        JMenuItem subJMenuPrimeiroItem = new JMenuItem("Carregar");
-        jmiCarregar.add(subJMenuPrimeiroItem);
-
+        /**
+         * 
+         */
         
-  
-        
+        List<JMenuItem> intensSubMenu = ResentSaves.getInstace().getSavesRecetes();
+        for (final JMenuItem jmenuIten : intensSubMenu) {
+            jmiCarregar.add(jmenuIten);
+            jmenuIten.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    fkKey = SaveDAO.recuperaPkKey(jmenuIten.getText());
+                    c.setFigs(SaveDAO.retreveSaveListItens(fkKey));
+                    c.repaint();
+                }
+            });
+        }
+
         jmArquivo.add(jmiSalvar);
         jmArquivo.add(jmiSalvarNovo);
         jmArquivo.add(jmiCarregar);
@@ -63,24 +74,25 @@ public class TelaPrincipal extends JFrame {
         jmbBarra.add(jmArquivo);
 
         this.setJMenuBar(jmbBarra);
-        subJMenuPrimeiroItem.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                final RecuperarSaves recuperarSaves = new RecuperarSaves();
 
-                recuperarSaves.getBtnCerragar().addActionListener(new ActionListener() {
-                    @Override
-                    public void actionPerformed(ActionEvent e) {
-                        name = recuperarSaves.getTfNameSave().getText();
-                        fkKey = SaveDAO.recuperaPkKey(name);
-                        c.setFigs(SaveDAO.retreveSaveListItens(fkKey));
-                        c.repaint();
-                        recuperarSaves.getJ().dispose();
-                    }
-                });
-            }
-        });
+        /*subJMenuPrimeiroItem.addActionListener(new ActionListener() {
+         @Override
+         public void actionPerformed(ActionEvent e) {
+         
 
+         recuperarSaves.getBtnCerragar().addActionListener(new ActionListener() {
+         @Override
+         public void actionPerformed(ActionEvent e) {
+
+         name = recuperarSaves.getTfNameSave().getText();
+         fkKey = SaveDAO.recuperaPkKey(name);
+         c.setFigs(SaveDAO.retreveSaveListItens(fkKey));
+         c.repaint();
+         recuperarSaves.getJ().dispose();
+         }
+         });
+         }
+         });*/
         jmiSalvar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -106,7 +118,7 @@ public class TelaPrincipal extends JFrame {
                         public void actionPerformed(ActionEvent e) {
                             name = save.getTfName().getText();
                             saveController.savarFigurasNome(c.getFigs(), name);
-                            save.dispose();
+                            save.dispose();                            
                         }
                     });
                 }
