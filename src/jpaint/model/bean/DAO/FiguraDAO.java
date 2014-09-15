@@ -3,7 +3,7 @@
  * banco de dados
  *
  */
-package jpaint.model.bean;
+package jpaint.model.bean.DAO;
 
 import java.awt.Color;
 import java.sql.Connection;
@@ -14,6 +14,13 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import jpaint.model.bean.Circulo;
+import jpaint.model.bean.Elipse;
+import jpaint.model.bean.Figura;
+import jpaint.model.bean.Figuras;
+import jpaint.model.bean.Quadrado;
+import jpaint.model.bean.Retangulo;
+import jpaint.model.bean.Triangulo;
 import jpaint.model.connection.BancoDados;
 
 /**
@@ -193,7 +200,6 @@ public class FiguraDAO {
                 Logger.getLogger(FiguraDAO.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-
         try {
             String sql = ("UPDATE FIGURA SET x=?, y=?, largura=?, altura=? "
                     + "WHERE PK_FIGURA =?");

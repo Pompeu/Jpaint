@@ -1,7 +1,7 @@
 /*
  * classe DAO  para save
  */
-package jpaint.model.bean;
+package jpaint.model.bean.DAO;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -11,6 +11,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import jpaint.model.bean.Figura;
+import jpaint.model.bean.Figuras;
+import jpaint.model.bean.SaveModel;
 import jpaint.model.connection.BancoDados;
 
 /**
@@ -105,7 +108,6 @@ public class SaveDAO {
      */
     public static Figuras retreveSaveListItens(int fkKey) {
         Figuras listFigurasFiltradas = new Figuras();
-
         String sql = "SELECT * FROM FIGURA WHERE FK_SAVE = ?";
         con = BancoDados.getConnection();
         try {
@@ -129,7 +131,7 @@ public class SaveDAO {
      * @return pkKey
      */
     public static int recuperaPkKey(String nome) {
-        Save save = null;
+        SaveModel save = new SaveModel(-1, "");
 
         String sql = "SELECT * FROM FIGURAS_SALVAS WHERE SAVE_NAME = ?";
         con = BancoDados.getConnection();
@@ -139,7 +141,7 @@ public class SaveDAO {
             ResultSet rs = preparar.executeQuery();
 
             rs.next();
-            save = new Save(rs.getInt("PK_SAVE"), rs.getString("SAVE_NAME"));
+            save = new SaveModel(rs.getInt("PK_SAVE"), rs.getString("SAVE_NAME"));
 
             BancoDados.closeConnection();
         } catch (SQLException ex) {
@@ -153,8 +155,8 @@ public class SaveDAO {
      *
      * @return namesSaved
      */
-    public static List<Save> retreveSaveName() {
-        List<Save> names = new ArrayList<>();
+    public static List<SaveModel> retreveSaveName() {
+        List<SaveModel> names = new ArrayList<>();
         String sql = "SELECT * FROM FIGURAS_SALVAS";
         con = BancoDados.getConnection();
         try {
@@ -163,7 +165,7 @@ public class SaveDAO {
             ResultSet rs = preparar.executeQuery();
 
             while (rs.next()) {
-                Save nome = new Save(rs.getInt("PK_SAVE"), rs.getString("SAVE_NAME"));
+                SaveModel nome = new SaveModel(rs.getInt("PK_SAVE"), rs.getString("SAVE_NAME"));
                 names.add(nome);
             }
             BancoDados.closeConnection();

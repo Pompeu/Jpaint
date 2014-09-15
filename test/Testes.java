@@ -3,14 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
-import java.util.ArrayList;
+import java.awt.Color;
 import java.util.List;
 import jpaint.controller.SaveController;
+import jpaint.model.bean.DAO.SaveDAO;
 import jpaint.model.bean.Figura;
 import jpaint.model.bean.Figuras;
-import jpaint.model.bean.Save;
-import jpaint.model.bean.SaveDAO;
+import jpaint.model.bean.Triangulo;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Assert;
@@ -42,35 +41,28 @@ public class Testes {
     @After
     public void tearDown() {
     }
-/*
-    @Test
-    public void testSaveDaoRetriveListSave() {
-        String name = "maria";
-        ArrayList<Figura> list = SaveDAO.retreveSaveList(name);
-        list.stream().forEach(System.out::println);
-        Assert.assertEquals(2, list.size());
-    }
 
     @Test
-    public void saveDAOListName() {
-        List<Save> nomes = SaveDAO.retreveSaveName();
-        nomes.stream().forEach(System.out::println);
-        Assert.assertEquals(5, nomes.size());
-    }
-*/
-    @Test
-    public void testSaveRecuperarFiguras() {
+    public void teseSaveNovasFiguras() {
         
-        SaveController saveController = new SaveController();
+        int tamhoAtualListFiguras = SaveDAO.retreveSaveListItens(2).getFigs().size();
 
-        Figuras figs = saveController.recuperarFigurasNome("amora");
+        Figuras listFigurasNovas = SaveDAO.retreveSaveListItens(2);
+        /*for (final Figura f : listFigurasNovas.getFigs()) {
+            System.out.println(f);
+        }*/
+        listFigurasNovas.getFigs().add(new Triangulo(20,
+                20, 35, 35,
+                45, Color.RED, Color.BLACK));
+        listFigurasNovas.getFigs().add(new Triangulo(20,
+                20, 35, 32,
+                45, Color.RED, Color.BLACK));
+        SaveController save = new SaveController();
+        List<Figura> figuras = listFigurasNovas.getFigs().subList(tamhoAtualListFiguras, listFigurasNovas.getFigs().size());
+        for (Figura figura : figuras) {
+            System.out.println(figura);
+        }
+        Assert.assertEquals(2, figuras.size());
         
-        Assert.assertEquals(5, figs.getFigs().size());
-    }
-       @Test
-    public void testSaveRecuperarFigurasbyName() {
-        String nome = "amora";      
-        
-        Assert.assertEquals(4, SaveDAO.recuperaPkKey(nome));
     }
 }

@@ -5,10 +5,11 @@
  */
 package jpaint.controller;
 
+import java.util.List;
 import jpaint.model.bean.Figura;
-import jpaint.model.bean.FiguraDAO;
+import jpaint.model.bean.DAO.FiguraDAO;
 import jpaint.model.bean.Figuras;
-import jpaint.model.bean.SaveDAO;
+import jpaint.model.bean.DAO.SaveDAO;
 
 /**
  *
@@ -29,6 +30,12 @@ public class SaveController {
         }
     }
 
+    public void savarNovasFiguras(List<Figura> figs, int fkkey) {    
+        for (Figura f : figs) {
+            FiguraDAO.create(f, fkkey);
+        }
+    }
+
     /**
      * esse metodo recebe um nome e recupera uma lista de figuras
      *
@@ -40,14 +47,5 @@ public class SaveController {
         Figuras figs = SaveDAO.retreveSaveListItens(fkKey);
         return figs;
     }
-    /**
-     * esse metodo ainda não esta completo
-     * @param figs
-     * @param fkKey 
-     */
-    public void savarNovasFiguras(Figuras figs, int fkKey) {
-        for (Figura f : figs.getFigs()) {
-            FiguraDAO.create(f, fkKey);
-        }
-    }
+
 }

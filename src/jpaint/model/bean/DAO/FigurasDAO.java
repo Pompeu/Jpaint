@@ -1,5 +1,5 @@
 
-package jpaint.model.bean;
+package jpaint.model.bean.DAO;
 
 public class FigurasDAO {
     

@@ -15,6 +15,7 @@ public class ToolBar extends JPanel {
     public final static int RETANGULO = 3;
     public final static int TRIANGULO = 4;
     private int ferramentaSelecionada = 0;
+    private final JButton botoes[] = new JButton[5];
     private static final JButton btnElipse = new JButton("Elipse");
     private static final JButton btnCirculo = new JButton("Circulo");
     private static final JButton btnQuadrado = new JButton("Quadrado");
@@ -40,67 +41,22 @@ public class ToolBar extends JPanel {
      * esse metodo manipula os eventos dos botões
      */
     private void initBtnEvents() {
-        btnElipse.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                setFerramentaSelecionada(0);
-            }
-        });
-        btnCirculo.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                setFerramentaSelecionada(1);
-            }
-        });
-        btnQuadrado.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                setFerramentaSelecionada(2);
-            }
-        });
-        btnRetangulo.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                setFerramentaSelecionada(3);
-            }
-        });
-        btnTriangulo.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                setFerramentaSelecionada(4);
-            }
-        });
-        /*
-         btnElipse.addMouseListener(new MouseAdapter() {
-         @Override
-         public void mouseClicked(MouseEvent e) {
-         setFerramentaSelecionada(0);
-         }
-         });
-         btnCirculo.addMouseListener(new MouseAdapter() {
-         @Override
-         public void mouseClicked(MouseEvent e) {
-         setFerramentaSelecionada(1);
-         }
-         });
-         btnQuadrado.addMouseListener(new MouseAdapter() {
-         @Override
-         public void mouseClicked(MouseEvent e) {
-         setFerramentaSelecionada(2);
-         }
-         });
-         btnRetangulo.addMouseListener(new MouseAdapter() {
-         @Override
-         public void mouseClicked(MouseEvent e) {
-         setFerramentaSelecionada(3);
-         }
-         });
-         btnTriangulo.addMouseListener(new MouseAdapter() {
-         @Override
-         public void mouseClicked(MouseEvent e) {
-         setFerramentaSelecionada(4);
-         }
-         });*/
+
+        botoes[0] = btnElipse;
+        botoes[1] = btnCirculo;
+        botoes[2] = btnQuadrado;
+        botoes[3] = btnRetangulo;
+        botoes[4] = btnTriangulo;
+
+        for (final JButton b : botoes) {
+            b.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    setFerramentaSelecionada(getIndexButtoes(b.getText()));
+                }
+            });
+        }
+
         btnColorBorder.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -166,6 +122,34 @@ public class ToolBar extends JPanel {
         return btnColorBackGround;
     }
 
-   
-   
+    /**
+     * esse metodo recebe nome do botão e me restorna seu numero para uso da
+     * ferramenta
+     *
+     * @param nome
+     * @return Index
+     */
+    private int getIndexButtoes(String nome) {
+
+        switch (nome) {
+            case "Elipse":
+                return ELIPSE;
+
+            case "Circulo":
+                return CIRCULO;
+
+            case "Quadrado":
+                return QUADRADO;
+
+            case "Retangulo":
+                return RETANGULO;
+
+            case "triangulo":
+                return TRIANGULO;
+
+            default:
+
+        }
+        return ELIPSE;
+    }
 }

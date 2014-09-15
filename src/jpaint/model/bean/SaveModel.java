@@ -10,12 +10,13 @@ package jpaint.model.bean;
  *
  * @author pompeu
  */
-public class Save {
+public class SaveModel {
     
     private int pkSave;
     private String saveName;
-
-    public Save(int pkSave, String saveName) {
+    private Figura figura;
+    
+    public SaveModel(int pkSave, String saveName) {
         setPkSave(pkSave);
         setSaveName(saveName);
     }
@@ -33,7 +34,7 @@ public class Save {
     }
 
     public void setSaveName(String saveName) {
-        this.saveName = saveName;
+        this.saveName = saveName.toLowerCase();
     }
 
     @Override

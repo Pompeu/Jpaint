@@ -8,8 +8,8 @@ package jpaint.view;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JMenuItem;
-import jpaint.model.bean.Save;
-import jpaint.model.bean.SaveDAO;
+import jpaint.model.bean.SaveModel;
+import jpaint.model.bean.DAO.SaveDAO;
 
 /**
  *
@@ -26,6 +26,7 @@ public class ResentSaves extends JMenuItem {
     }
 
     public static ResentSaves getInstace() {
+
         if (rSave == null) {
             rSave = new ResentSaves();
         }
@@ -49,9 +50,8 @@ public class ResentSaves extends JMenuItem {
      *
      */
     private void addNomesJMenu() {
-
-        List<Save> saveList = SaveDAO.retreveSaveName();
-        for (Save s : saveList) {
+        List<SaveModel> saveList = SaveDAO.retreveSaveName();
+        for (SaveModel s : saveList) {
             savesRecetes.add(new JMenuItem(s.getSaveName()));
         }
 
