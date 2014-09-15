@@ -1,0 +1,256 @@
+--
+-- PostgreSQL database dump
+--
+
+-- Dumped from database version 9.1.14
+-- Dumped by pg_dump version 9.1.14
+-- Started on 2014-09-15 02:31:04 BRT
+
+SET statement_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SET check_function_bodies = false;
+SET client_min_messages = warning;
+
+--
+-- TOC entry 165 (class 3079 OID 11684)
+-- Name: plpgsql; Type: EXTENSION; Schema: -; Owner: 
+--
+
+CREATE EXTENSION IF NOT EXISTS plpgsql WITH SCHEMA pg_catalog;
+
+
+--
+-- TOC entry 1918 (class 0 OID 0)
+-- Dependencies: 165
+-- Name: EXTENSION plpgsql; Type: COMMENT; Schema: -; Owner: 
+--
+
+COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
+
+
+SET search_path = public, pg_catalog;
+
+SET default_tablespace = '';
+
+SET default_with_oids = false;
+
+--
+-- TOC entry 162 (class 1259 OID 40964)
+-- Dependencies: 5
+-- Name: figura; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE figura (
+    x integer,
+    y integer,
+    largura integer,
+    altura integer,
+    tipo integer,
+    pk_figura integer NOT NULL,
+    color_border integer,
+    color_internal integer,
+    fk_save integer NOT NULL
+);
+
+
+ALTER TABLE public.figura OWNER TO postgres;
+
+--
+-- TOC entry 161 (class 1259 OID 40962)
+-- Dependencies: 162 5
+-- Name: figura_pk_figura_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE figura_pk_figura_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.figura_pk_figura_seq OWNER TO postgres;
+
+--
+-- TOC entry 1919 (class 0 OID 0)
+-- Dependencies: 161
+-- Name: figura_pk_figura_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE figura_pk_figura_seq OWNED BY figura.pk_figura;
+
+
+--
+-- TOC entry 164 (class 1259 OID 40985)
+-- Dependencies: 5
+-- Name: figuras_salvas; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE figuras_salvas (
+    pk_save integer NOT NULL,
+    save_name character varying(10)
+);
+
+
+ALTER TABLE public.figuras_salvas OWNER TO postgres;
+
+--
+-- TOC entry 163 (class 1259 OID 40983)
+-- Dependencies: 164 5
+-- Name: figuras_salvas_pk_save_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE figuras_salvas_pk_save_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.figuras_salvas_pk_save_seq OWNER TO postgres;
+
+--
+-- TOC entry 1920 (class 0 OID 0)
+-- Dependencies: 163
+-- Name: figuras_salvas_pk_save_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE figuras_salvas_pk_save_seq OWNED BY figuras_salvas.pk_save;
+
+
+--
+-- TOC entry 1797 (class 2604 OID 40967)
+-- Dependencies: 162 161 162
+-- Name: pk_figura; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY figura ALTER COLUMN pk_figura SET DEFAULT nextval('figura_pk_figura_seq'::regclass);
+
+
+--
+-- TOC entry 1798 (class 2604 OID 40988)
+-- Dependencies: 164 163 164
+-- Name: pk_save; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY figuras_salvas ALTER COLUMN pk_save SET DEFAULT nextval('figuras_salvas_pk_save_seq'::regclass);
+
+
+--
+-- TOC entry 1908 (class 0 OID 40964)
+-- Dependencies: 162 1911
+-- Data for Name: figura; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY figura (x, y, largura, altura, tipo, pk_figura, color_border, color_internal, fk_save) FROM stdin;
+233	98	441	392	0	25	-16777216	-12124160	1
+99	233	73	202	0	26	-16777216	-7471033	1
+826	95	220	270	0	27	-9728334	-7471033	1
+711	456	183	156	0	28	-9728334	-9764757	1
+72	65	101	89	4	29	-9728334	-9764757	1
+153	488	224	182	4	30	-14483314	-1118482	1
+107	27	219	162	0	31	-7470926	-12096768	2
+153	222	175	175	0	32	-7470926	-12096768	2
+474	41	144	144	2	33	-7470926	-12096768	2
+380	238	261	148	3	34	-7470926	-12096768	2
+744	33	123	195	4	35	-7470926	-12096768	2
+741	76	36	105	4	40	-14483349	-5075314	1
+737	307	169	78	3	41	-16777074	-16749717	2
+147	85	344	254	4	42	-16777216	-12078521	3
+544	91	147	147	0	43	-16777216	-12078521	3
+272	212	64	64	2	44	-7470926	-16749717	3
+496	249	85	46	0	45	-7470926	-16749717	3
+\.
+
+
+--
+-- TOC entry 1921 (class 0 OID 0)
+-- Dependencies: 161
+-- Name: figura_pk_figura_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('figura_pk_figura_seq', 45, true);
+
+
+--
+-- TOC entry 1910 (class 0 OID 40985)
+-- Dependencies: 164 1911
+-- Data for Name: figuras_salvas; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY figuras_salvas (pk_save, save_name) FROM stdin;
+1	pompeu
+2	jose
+3	maria
+\.
+
+
+--
+-- TOC entry 1922 (class 0 OID 0)
+-- Dependencies: 163
+-- Name: figuras_salvas_pk_save_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('figuras_salvas_pk_save_seq', 1, false);
+
+
+--
+-- TOC entry 1800 (class 2606 OID 40977)
+-- Dependencies: 162 162 1912
+-- Name: figura_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY figura
+    ADD CONSTRAINT figura_pkey PRIMARY KEY (pk_figura);
+
+
+--
+-- TOC entry 1802 (class 2606 OID 40990)
+-- Dependencies: 164 164 1912
+-- Name: figuras_salvas_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY figuras_salvas
+    ADD CONSTRAINT figuras_salvas_pkey PRIMARY KEY (pk_save);
+
+
+--
+-- TOC entry 1804 (class 2606 OID 49153)
+-- Dependencies: 164 164 1912
+-- Name: figuras_salvas_save_name_key; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY figuras_salvas
+    ADD CONSTRAINT figuras_salvas_save_name_key UNIQUE (save_name);
+
+
+--
+-- TOC entry 1805 (class 2606 OID 40991)
+-- Dependencies: 1801 164 162 1912
+-- Name: figura_fk_save_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY figura
+    ADD CONSTRAINT figura_fk_save_fkey FOREIGN KEY (fk_save) REFERENCES figuras_salvas(pk_save);
+
+
+--
+-- TOC entry 1917 (class 0 OID 0)
+-- Dependencies: 5
+-- Name: public; Type: ACL; Schema: -; Owner: postgres
+--
+
+REVOKE ALL ON SCHEMA public FROM PUBLIC;
+REVOKE ALL ON SCHEMA public FROM postgres;
+GRANT ALL ON SCHEMA public TO postgres;
+GRANT ALL ON SCHEMA public TO PUBLIC;
+
+
+-- Completed on 2014-09-15 02:31:05 BRT
+
+--
+-- PostgreSQL database dump complete
+--
+
