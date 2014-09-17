@@ -3,10 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/home/pompeu/NetBeansProjects/jPaint/src/jpaint/model/bean/DAO/SaveDAO.java</file>
             <file>file:/home/pompeu/NetBeansProjects/jPaint/src/jpaint/view/TelaPrincipal.java</file>
-            <file>file:/home/pompeu/NetBeansProjects/jPaint/src/jpaint/view/ToolBar.java</file>
-            <file>file:/home/pompeu/NetBeansProjects/jPaint/src/jpaint/view/ColorChoice.java</file>
-            <file>file:/home/pompeu/NetBeansProjects/jPaint/src/jpaint/view/Canvas.java</file>
+            <file>file:/home/pompeu/NetBeansProjects/jPaint/src/jpaint/model/bean/Figura.java</file>
+            <file>file:/home/pompeu/NetBeansProjects/jPaint/src/jpaint/view/ResentSaves.java</file>
+            <file>file:/home/pompeu/NetBeansProjects/jPaint/test/Testes.java</file>
         </group>
     </open-files>
 </project-private>

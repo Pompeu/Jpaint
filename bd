@@ -4,7 +4,7 @@
 
 -- Dumped from database version 9.1.14
 -- Dumped by pg_dump version 9.1.14
--- Started on 2014-09-15 02:31:04 BRT
+-- Started on 2014-09-17 15:47:11 BRT
 
 SET statement_timeout = 0;
 SET client_encoding = 'UTF8';
@@ -145,23 +145,11 @@ ALTER TABLE ONLY figuras_salvas ALTER COLUMN pk_save SET DEFAULT nextval('figura
 --
 
 COPY figura (x, y, largura, altura, tipo, pk_figura, color_border, color_internal, fk_save) FROM stdin;
-233	98	441	392	0	25	-16777216	-12124160	1
-99	233	73	202	0	26	-16777216	-7471033	1
-826	95	220	270	0	27	-9728334	-7471033	1
-711	456	183	156	0	28	-9728334	-9764757	1
-72	65	101	89	4	29	-9728334	-9764757	1
-153	488	224	182	4	30	-14483314	-1118482	1
-107	27	219	162	0	31	-7470926	-12096768	2
-153	222	175	175	0	32	-7470926	-12096768	2
-474	41	144	144	2	33	-7470926	-12096768	2
-380	238	261	148	3	34	-7470926	-12096768	2
-744	33	123	195	4	35	-7470926	-12096768	2
-741	76	36	105	4	40	-14483349	-5075314	1
-737	307	169	78	3	41	-16777074	-16749717	2
-147	85	344	254	4	42	-16777216	-12078521	3
-544	91	147	147	0	43	-16777216	-12078521	3
-272	212	64	64	2	44	-7470926	-16749717	3
-496	249	85	46	0	45	-7470926	-16749717	3
+158	142	1	0	0	69	-1118482	-1118482	1
+175	91	249	135	0	70	-9764757	-5093454	1
+126	61	15	15	2	71	-1118482	-7470926	2
+140	73	137	52	3	72	-5093454	-5111773	3
+299	76	266	198	4	73	-16758862	-5075385	2
 \.
 
 
@@ -171,7 +159,7 @@ COPY figura (x, y, largura, altura, tipo, pk_figura, color_border, color_interna
 -- Name: figura_pk_figura_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('figura_pk_figura_seq', 45, true);
+SELECT pg_catalog.setval('figura_pk_figura_seq', 75, true);
 
 
 --
@@ -181,8 +169,8 @@ SELECT pg_catalog.setval('figura_pk_figura_seq', 45, true);
 --
 
 COPY figuras_salvas (pk_save, save_name) FROM stdin;
-1	pompeu
-2	jose
+1	jose
+2	aaa
 3	maria
 \.
 
@@ -248,7 +236,7 @@ GRANT ALL ON SCHEMA public TO postgres;
 GRANT ALL ON SCHEMA public TO PUBLIC;
 
 
--- Completed on 2014-09-15 02:31:05 BRT
+-- Completed on 2014-09-17 15:47:11 BRT
 
 --
 -- PostgreSQL database dump complete
