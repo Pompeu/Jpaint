@@ -3,7 +3,6 @@
  * 
  * 
  */
-
 package jpaint.model.bean;
 
 /**
@@ -11,11 +10,10 @@ package jpaint.model.bean;
  * @author pompeu
  */
 public class SaveModel {
-    
+
     private int pkSave;
     private String saveName;
-    private Figura figura;
-    
+
     public SaveModel(int pkSave, String saveName) {
         setPkSave(pkSave);
         setSaveName(saveName);
@@ -41,6 +39,5 @@ public class SaveModel {
     public String toString() {
         return "Save{" + "pkSave=" + pkSave + ", saveName=" + saveName + '}';
     }
-    
-    
+
 }

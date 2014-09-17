@@ -6,7 +6,9 @@
 package jpaint.view;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import javax.swing.JMenuItem;
 import jpaint.model.bean.SaveModel;
 import jpaint.model.bean.DAO.SaveDAO;
@@ -17,8 +19,7 @@ import jpaint.model.bean.DAO.SaveDAO;
  */
 public class ResentSaves extends JMenuItem {
 
-    private final List<JMenuItem> savesRecetes = new ArrayList<>();
-    private String[] nomes;
+    private final Set<JMenuItem> savesRecetes = new HashSet<>();
     public static ResentSaves rSave = null;
 
     private ResentSaves() {
@@ -33,23 +34,15 @@ public class ResentSaves extends JMenuItem {
         return rSave;
     }
 
-    public List<JMenuItem> getSavesRecetes() {
+    public Set<JMenuItem> getSavesRecetes() {
         return savesRecetes;
-    }
-
-    public String[] getNomes() {
-        return nomes;
-    }
-
-    public void setNomes(String[] nomes) {
-        this.nomes = nomes;
     }
 
     /**
      * esse metodo faz com a lista de nomes dos saves venham para o submenu
      *
      */
-    private void addNomesJMenu() {
+    public void addNomesJMenu() {
         List<SaveModel> saveList = SaveDAO.retreveSaveName();
         for (SaveModel s : saveList) {
             savesRecetes.add(new JMenuItem(s.getSaveName()));
