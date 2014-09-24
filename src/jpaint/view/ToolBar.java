@@ -47,7 +47,8 @@ public class ToolBar extends JPanel {
         botoes[2] = btnQuadrado;
         botoes[3] = btnRetangulo;
         botoes[4] = btnTriangulo;
-
+        btnColorBorder.setBackground(Color.BLACK);
+        btnColorBackGround.setBackground(Color.RED);
         for (final JButton b : botoes) {
             b.addActionListener(new ActionListener() {
                 @Override
@@ -104,9 +105,7 @@ public class ToolBar extends JPanel {
      * @param color
      */
     public static void setColorJButton(Color color) {
-
         btnColorBorder.setBackground(color);
-
     }
 
     public static void setColorJButtonBackGroud(Color color) {
