@@ -22,6 +22,9 @@ public class BancoDados {
         }
         try {
             con = DriverManager.getConnection(ConnetionData.URL, ConnetionData.USER, ConnetionData.PASSWD);
+            if (con == null) {
+                con = DriverManager.getConnection(ConnetionData.URL, ConnetionData.USER, "ifgoiano");
+            }
         } catch (SQLException ex) {
             Logger.getLogger(BancoDados.class.getName()).log(Level.SEVERE, null, ex);
 
